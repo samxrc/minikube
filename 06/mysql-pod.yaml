@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: empms-db
+spec:
+  containers:
+  - name: mysql
+    image: opstree/empms-db:1.0
+    env:
+    - name: MYSQL_DATABASE
+      value: attendancedb
+  restartPolicy: Always
