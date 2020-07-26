@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: empms-gateway
+  labels:
+    app: empms-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empms-gateway
+  template:
+    metadata:
+      labels:
+        app: empms-gateway
+    spec:
+      containers:
+      - name: empms-gateway
+        image: opstree/empms-gateway:1.0
+        ports:
+        - containerPort: 8080
