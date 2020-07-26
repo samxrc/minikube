@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: empms-attendance
+  labels:
+    app: empms-attendance
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empms-attendance
+  template:
+    metadata:
+      labels:
+        app: empms-attendance
+    spec:
+      containers:
+      - name: empms-attendance
+        image: opstree/empms-attendance:1.0
+        ports:
+        - containerPort: 8081

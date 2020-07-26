@@ -1,0 +1,12 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: empms-db
+spec:
+  type: ClusterIP
+  selector:
+    app: empms-db
+  ports:
+  - protocol: TCP
+    port: 3306

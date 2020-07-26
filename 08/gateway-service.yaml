@@ -1,0 +1,12 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: empms-gateway
+spec:
+  type: ClusterIP
+  selector:
+    app: empms-gateway
+  ports:
+  - protocol: TCP
+    port: 8080

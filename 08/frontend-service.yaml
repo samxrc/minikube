@@ -1,0 +1,12 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: empms-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: empms-frontend
+  ports:
+  - protocol: TCP
+    port: 5000

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: empms-webserver
+  labels:
+    app: empms-webserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empms-webserver
+  template:
+    metadata:
+      labels:
+        app: empms-webserver
+    spec:
+      containers:
+      - name: empms-webserver
+        image: opstree/empms-webserver:1.0
+        ports:
+        - containerPort: 80
