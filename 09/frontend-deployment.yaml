@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: empms-frontend
+  name: empms-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empms-frontend
+  template:
+    metadata:
+      labels:
+        app: empms-frontend
+    spec:
+      containers:
+      - image: opstree/empms-frontend:1.0
+        imagePullPolicy: Always
+        name: empms-frontend
+        ports:
+        - containerPort: 5000
