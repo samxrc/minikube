@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: empms-gateway
+  name: empms-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empms-gateway
+  template:
+    metadata:
+      labels:
+        app: empms-gateway
+    spec:
+      containers:
+      - image: opstree/empms-gateway:1.0
+        imagePullPolicy: Always
+        name: empms-gateway
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /app/config/application.yml
+          name: gateway-config
+          subPath: application.yml
+      volumes:
+        - name: gateway-config
+          configMap:
+            name: gateway-config
