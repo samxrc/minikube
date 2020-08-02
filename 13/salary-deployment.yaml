@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: empms-salary
+  name: empms-salary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empms-salary
+  template:
+    metadata:
+      labels:
+        app: empms-salary
+    spec:
+      containers:
+      - image: opstree/empms-salary:1.0
+        imagePullPolicy: Always
+        name: empms-salary
+        env:
+        - name: DELAY_TIME
+          value: "5"
+        ports:
+        - containerPort: 8082
+          name: client
+        livenessProbe:
+          httpGet:
+            path: /salary/healthz
+            port: 8082
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /salary/healthz
+            port: 8082
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 10
