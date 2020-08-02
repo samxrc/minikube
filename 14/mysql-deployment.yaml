@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: empms-db
+  name: empms-db
+  namespace: stark-industry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empms-db
+  template:
+    metadata:
+      labels:
+        app: empms-db
+    spec:
+      containers:
+      - image: opstree/empms-db:1.0
+        imagePullPolicy: Always
+        name: empms-db
+        env:
+        - name: MYSQL_DATABASE
+          value: attendancedb
+        ports:
+        - containerPort: 3306
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "200m"
+          limits:
+            memory: "500Mi"
+            cpu: "200m"

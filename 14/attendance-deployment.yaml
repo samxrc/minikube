@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: empms-attendance
+  name: empms-attendance
+  namespace: stark-industry
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: empms-attendance
+  template:
+    metadata:
+      labels:
+        app: empms-attendance
+    spec:
+      containers:
+      - image: opstree/empms-attendance:1.0
+        imagePullPolicy: Always
+        name: empms-attendance
+        ports:
+        - containerPort: 8081
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "100Mi"
+            cpu: "100m"
